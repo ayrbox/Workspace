@@ -2,11 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { staffs } from './constants';
+import Calendar from './/components/Calendar';
+
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <Calendar />
+        <pre>
+          {JSON.stringify(staffs, null, 2)}
+        </pre>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

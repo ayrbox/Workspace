@@ -1,4 +1,10 @@
-export const staffs: string[] = [
-  'Mr Jone',
-  'Test',
+
+export const WeekdayNames: string[] = [
+  'Mon',
+  'Tue',
+  'Wed',
+  'Thu',
+  'Fri',
+  'Sat',
+  'Sun',
 ];

@@ -13,6 +13,7 @@ export default function Calendar() {
         <p>2018</p>
       </div>
       <div className="calendar">
+        <button type="button">This is button in Grid</button>
         <WeekDays /> 
         <div className="day day--disabled">30</div>
         <div className="day day--disabled">31</div>

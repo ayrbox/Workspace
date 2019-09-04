@@ -2,7 +2,6 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { staffs } from './constants';
 import Calendar from './/components/Calendar';
 
 const App: React.FC = () => {
@@ -10,9 +9,6 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <Calendar />
-        <pre>
-          {JSON.stringify(staffs, null, 2)}
-        </pre>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

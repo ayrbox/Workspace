@@ -1,14 +1,14 @@
 import React from 'react';
-import { ShiftType, WorkSpaceLocationType } from '../../constants';
+import { ShiftType, WorkspaceType, UNKNOWN_WORKSPACE } from '../../constants';
 
 type CalendarContextProps = {
   days: Date[],
   shifts: ShiftType[], 
-  defaultWorkspace: WorkSpaceLocationType,
+  defaultWorkspace: WorkspaceType,
 }
 
 export default React.createContext<CalendarContextProps>({
   days: [],
   shifts: [],
-  defaultWorkspace: {} 
+  defaultWorkspace: UNKNOWN_WORKSPACE 
 }); 

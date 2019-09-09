@@ -3,7 +3,7 @@ import React, { ReactElement, FC } from 'react'
 import CalendarContext from './CalendarContext';
 import getMonthDays from '../../utils/getMonthDays';
 
-import { workSpaceLocation, shifts } from '../../constants';
+import { WORKSPACES, SHIFTS, UNKNOWN_WORKSPACE } from '../../constants';
 
 interface CalendarProps {
   children: ReactElement | ReactElement[];
@@ -11,10 +11,7 @@ interface CalendarProps {
   month?: number,
 }
 
-const defaultWorkspace = Object.entries(workSpaceLocation)
-  .map(([key, value]) => ({ key, ...value }))
-  .find(({ isDefault }) => isDefault);
-
+const defaultWorkspace = WORKSPACES.find(({ isDefault }) => isDefault);
 
 export const Calendar: FC<CalendarProps> = ({
   children,
@@ -25,8 +22,8 @@ export const Calendar: FC<CalendarProps> = ({
   return (
     <CalendarContext.Provider value={{
       days: days,
-      shifts: shifts,
-      defaultWorkspace: defaultWorkspace,
+      shifts: SHIFTS,
+      defaultWorkspace: defaultWorkspace || UNKNOWN_WORKSPACE,
     }}>
       <div className="calendar-container" style={{ overflow: 'scroll', width: '100%' }}>
         <table className="table table-dark table-striped table-bordered">

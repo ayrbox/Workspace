@@ -1,24 +1,26 @@
-import React from 'react'
-// import find from 'lodash/find';
+import React, { useContext } from 'react'
 
-import { workSpaceLocation } from '../../constants';
+import { ShiftType } from '../../constants';
+import CalendarContext from '../Calendar/CalendarContext';
 
 interface CalendarCellProps {
  employeeName: string;
  dateKey: string;
- shift: string; 
+ shift: ShiftType; 
 }
 
-const defaultShift = Object.entries(workSpaceLocation)
-  .map(([key, value]) => ({ key, ...value}))
-  .find(({ isDefault }) => isDefault);
 
 export const CalendarCell: React.FC<CalendarCellProps> = ({
   employeeName,
   dateKey,
   shift,
 }: CalendarCellProps) => {
-  const { label } = defaultShift || {
+
+  const { 
+    defaultWorkspace,
+  } = useContext(CalendarContext);
+
+  const { label } = defaultWorkspace || {
     label: '-'
   };
   return (

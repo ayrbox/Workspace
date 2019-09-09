@@ -7,6 +7,12 @@ export interface WorkSpaceLocationType {
   };
 }
 
+export interface ShiftType {
+  key: string;
+  label: string;
+  description?: string;
+}
+
 export const workSpaceLocation: WorkSpaceLocationType = {
   'HOME': {
     label: 'Home',
@@ -24,3 +30,14 @@ export const workSpaceLocation: WorkSpaceLocationType = {
     description: 'Day off of work/ OnLeave',
   }
 } 
+
+export const shifts: ShiftType[] = [{
+  key: 'AM',
+  label: 'Morning',
+  description: 'Morning Shift 09:00 - 12:30',
+}, {
+  key: 'PM',
+  label: 'Afternoon',
+  description: 'Afternoon shift 14:00 - 18:00',
+}];
+

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import { ShiftType } from '../../constants';
-import CalendarContext from '../Calendar/CalendarContext';
+import { ShiftType, WORKSPACES, UNKNOWN_WORKSPACE } from '../../constants';
+// import CalendarContext from '../Calendar/CalendarContext';
 
 interface CalendarCellProps {
  employeeName: string;
@@ -15,14 +15,14 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   dateKey,
   shift,
 }: CalendarCellProps) => {
-
-  const { 
-    defaultWorkspace,
-  } = useContext(CalendarContext);
-
-  const { label } = defaultWorkspace || {
-    label: '-'
-  };
+  /* 
+    const { 
+      defaultWorkspace,
+    } = useContext(CalendarContext);
+    const { label } = defaultWorkspace || UNKNOWN_WORKSPACE; 
+  */
+  const rndSpace = Math.floor(Math.random() * Math.floor(WORKSPACES.length));
+  const { label } = WORKSPACES[rndSpace] || UNKNOWN_WORKSPACE;
   return (
     <td>
       {label}

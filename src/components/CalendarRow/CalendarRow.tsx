@@ -22,7 +22,7 @@ const CalendarRow: FC<CalendarRowProps> = ({
         const dKey = dateKey(day);
         return shifts.map((shift) => (
           <CalendarCell
-            key={`${dKey}-${shift}`}
+            key={`${dKey}-${shift.key}`}
             employeeName={employeeName}
             dateKey={dKey}
             shift={shift}

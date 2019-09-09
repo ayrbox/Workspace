@@ -13,12 +13,15 @@ const App: React.FC = () => {
         <Calendar year={2020} month={10}>
           <CalendarHeader />
           <tbody>
-          {Object.keys(data).map((empName) => ( 
-            <CalendarRow
-              key={`row-${empName}`}
-              employeeName={empName}
-            />
-          ))}
+            <CalendarRow employeeName="Ayrbox" />
+            <CalendarRow employeeName="Beans" />
+            <CalendarRow employeeName="Sabin" />
+            {Object.keys(data).map((empName) => ( 
+              <CalendarRow
+                key={`row-${empName}`}
+                employeeName={empName}
+              />
+            ))}
           </tbody>
         </Calendar>
       </header>

@@ -21,6 +21,7 @@ const App: React.FC = () => {
           <tbody>
           {Object.keys(data).map((empName) => ( 
             <CalendarRow
+              key={`row-${empName}`}
               employeeName={empName}
               days={days}
               shifts={shifts}

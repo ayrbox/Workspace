@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import dateKey from '../../utils/dateKey';
 
+import CalendarCell from '../CalendarCell';
+
 export interface CalendarRowProps {
   employeeName: string;  
   days: Date[];
@@ -18,9 +20,12 @@ const CalendarRow: FC<CalendarRowProps> = ({
       {days.map(day => {
         const dKey = dateKey(day);
         return shifts.map((shift) => (
-          <td key={`${dKey}-${shift}`}>
-            {dKey} - {shift}
-          </td>
+          <CalendarCell
+            key={`${dKey}-${shift}`}
+            employeeName={employeeName}
+            dateKey={dKey}
+            shift={shift}
+          />
         ));
       })}
     </tr>

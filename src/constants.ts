@@ -10,24 +10,28 @@ export interface WorkspaceType {
   description?: string;
   state: 0 | 1; // working state
   isDefault?: boolean;
+  color: string,
 }
 
 export const WORKSPACES: WorkspaceType[] = [{
   key: 'HOME',
   label: 'Home',
   description: 'Working from Home',
-  state: 1
+  state: 1,
+  color: '#92c492',
 }, {
   key: 'OFFICE',
   label: 'Office',
   description: 'Working in Office',
   state: 1,
   isDefault: true,
+  color: '#799be4',
 }, {
   key: 'OFF',
   label: 'Day Off',
   description: 'Day off of work / On Leave',
   state: 0,
+  color: '#fac677',
 }];
 
 export const UNKNOWN_WORKSPACE: WorkspaceType = {
@@ -35,6 +39,7 @@ export const UNKNOWN_WORKSPACE: WorkspaceType = {
   label: 'Not known',
   description: 'Not known / Undefined / Null',
   state: 0,
+  color: '#ddd',
 };
 
 export const SHIFTS: ShiftType[] = [{

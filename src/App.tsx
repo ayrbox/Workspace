@@ -18,11 +18,6 @@ const App: React.FC = () => {
             <CalendarRow employeeName="Employee 3" />
             <CalendarRow employeeName="Employee 4" />
             <CalendarRow employeeName="Employee 5" />
-            <CalendarRow employeeName="Employee 6" />
-            <CalendarRow employeeName="Employee 7" />
-            <CalendarRow employeeName="Employee 8" />
-            <CalendarRow employeeName="Employee 9" />
-            <CalendarRow employeeName="Employee 10" />
           </tbody>
         </Calendar>
       </header>

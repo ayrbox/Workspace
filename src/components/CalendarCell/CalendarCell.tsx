@@ -9,7 +9,6 @@ interface CalendarCellProps {
  shift: ShiftType; 
 }
 
-
 export const CalendarCell: React.FC<CalendarCellProps> = ({
   employeeName,
   dateKey,
@@ -22,9 +21,9 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
     const { label } = defaultWorkspace || UNKNOWN_WORKSPACE; 
   */
   const rndSpace = Math.floor(Math.random() * Math.floor(WORKSPACES.length));
-  const { label } = WORKSPACES[rndSpace] || UNKNOWN_WORKSPACE;
+  const { label, color } = WORKSPACES[rndSpace] || UNKNOWN_WORKSPACE;
   return (
-    <td>
+    <td style={{ backgroundColor: color }}>
       {label}
     </td>
   )

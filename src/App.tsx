@@ -4,8 +4,6 @@ import Calendar from './components/Calendar';
 import CalendarRow from './components/CalendarRow';
 import CalendarHeader from './components/CalendarHeader';
 
-import data from './data.json'
-
 const App: React.FC = () => {
   return (
     <div className="App">
@@ -15,13 +13,16 @@ const App: React.FC = () => {
           <tbody>
             <CalendarRow employeeName="Ayrbox" />
             <CalendarRow employeeName="Beans" />
-            <CalendarRow employeeName="Sabin" />
-            {Object.keys(data).map((empName) => ( 
-              <CalendarRow
-                key={`row-${empName}`}
-                employeeName={empName}
-              />
-            ))}
+            <CalendarRow employeeName="Employee 1" />
+            <CalendarRow employeeName="Employee 2" />
+            <CalendarRow employeeName="Employee 3" />
+            <CalendarRow employeeName="Employee 4" />
+            <CalendarRow employeeName="Employee 5" />
+            <CalendarRow employeeName="Employee 6" />
+            <CalendarRow employeeName="Employee 7" />
+            <CalendarRow employeeName="Employee 8" />
+            <CalendarRow employeeName="Employee 9" />
+            <CalendarRow employeeName="Employee 10" />
           </tbody>
         </Calendar>
       </header>

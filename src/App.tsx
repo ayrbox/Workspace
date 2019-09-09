@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-import Calendar from './/components/Calendar';
+import Calendar from './components/Calendar';
+import CalendarRow from './components/CalendarRow';
+import CalendarHeader from './components/CalendarHeader';
+
+import data from './data.json'
+
+import getMonthDays from './utils/getMonthDays';
 
 const App: React.FC = () => {
+
+  const days = getMonthDays(2019, 8);
+  const shifts = ['Morning', 'Afternoon'];
+
   return (
     <div className="App">
       <header className="App-header">
-        <Calendar />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Calendar>
+          <CalendarHeader days={days} shifts={shifts} />
+          <tbody>
+          {Object.keys(data).map((empName) => ( 
+            <CalendarRow
+              employeeName={empName}
+              days={days}
+              shifts={shifts}
+            />
+          ))}
+          </tbody>
+        </Calendar>
       </header>
     </div>
   );

@@ -18,7 +18,7 @@ export const Calendar: FC<CalendarProps> = ({
   year,
   month,
 }: CalendarProps) => {
-  const days = getMonthDays(year = 2019, month = 8);
+  const days = getMonthDays(year || 2019, month || 8);
   return (
     <CalendarContext.Provider value={{
       days: days,
@@ -26,12 +26,24 @@ export const Calendar: FC<CalendarProps> = ({
       defaultWorkspace: defaultWorkspace || UNKNOWN_WORKSPACE,
     }}>
       <div className="calendar-container" style={{ overflow: 'scroll', width: '100%' }}>
+        <div className="calendar-header">
+          <h1>
+            {year}
+            {' - '}
+            {month}
+          </h1>
+        </div>
         <table className="table table-dark table-striped table-bordered">
           {children} 
         </table>
       </div>
     </CalendarContext.Provider>
   )
+}
+
+Calendar.defaultProps = {
+  year: 2019,
+  month: 8,
 }
 
 export default Calendar;

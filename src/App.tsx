@@ -10,7 +10,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Calendar>
+        <Calendar year={2020} month={10}>
           <CalendarHeader />
           <tbody>
           {Object.keys(data).map((empName) => ( 

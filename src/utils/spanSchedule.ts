@@ -10,6 +10,44 @@ export type spanScheduleType = {
   span: number;
 };
 
+export function spinIt(flatScheule: spanScheduleType[]): spanScheduleType[] {
+  let current: spanScheduleType = {
+    dayKey: '',
+    shift: '',
+    workspace: '',
+    span: 0,
+  };
+
+  let cnt = 0;
+
+  const spannedSchedule: spanScheduleType[] = [];
+
+  for (let i = 0; i < flatScheule.length; i++) {
+    if (flatScheule[i].workspace != current.workspace) {
+      if (cnt > 0) {
+        // document.write(current + ' comes --> ' + cnt + ' times<br>');
+        // console.log(`${current.workspace} comes ${cnt} times`);
+        spannedSchedule.push({
+          ...current,
+          span: cnt,
+        });
+      }
+      current = flatScheule[i];
+      cnt = 1;
+    } else {
+      cnt++;
+    }
+  }
+  if (cnt > 0) {
+    // console.log(`${current.workspace} comes ${cnt} times`);
+    spannedSchedule.push({
+      ...current,
+      span: cnt,
+    });
+  }
+  return spannedSchedule;
+}
+
 const spanSchedule = (schedule: scheduleType): spanScheduleType[] => {
   // flatten the structure
   const flattenScheduleDays = Object.entries(schedule).map(([key, value]) => ({

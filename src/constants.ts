@@ -10,29 +10,33 @@ export interface WorkspaceType {
   description?: string;
   state: 0 | 1; // working state
   isDefault?: boolean;
-  color: string,
+  color: string;
 }
 
-export const WORKSPACES: WorkspaceType[] = [{
-  key: 'HOME',
-  label: 'Home',
-  description: 'Working from Home',
-  state: 1,
-  color: '#92c492',
-}, {
-  key: 'OFFICE',
-  label: 'Office',
-  description: 'Working in Office',
-  state: 1,
-  isDefault: true,
-  color: '#799be4',
-}, {
-  key: 'OFF',
-  label: 'Day Off',
-  description: 'Day off of work / On Leave',
-  state: 0,
-  color: '#fac677',
-}];
+export const WORKSPACES: WorkspaceType[] = [
+  {
+    key: 'HOME',
+    label: 'Home',
+    description: 'Working from Home',
+    state: 1,
+    color: '#92c492',
+  },
+  {
+    key: 'OFFICE',
+    label: 'Office',
+    description: 'Working in Office',
+    state: 1,
+    isDefault: true,
+    color: '#799be4',
+  },
+  {
+    key: 'OFF',
+    label: 'Day Off',
+    description: 'Day off of work / On Leave',
+    state: 0,
+    color: '#fac677',
+  },
+];
 
 export const UNKNOWN_WORKSPACE: WorkspaceType = {
   key: 'UNKNOWN',
@@ -42,18 +46,20 @@ export const UNKNOWN_WORKSPACE: WorkspaceType = {
   color: '#ddd',
 };
 
-export const SHIFTS: ShiftType[] = [{
-  key: 'AM',
-  label: 'Morning',
-  description: 'Morning Shift 09:00 - 12:30',
-}, {
-  key: 'PM',
-  label: 'Afternoon',
-  description: 'Afternoon shift 14:00 - 18:00',
-}];
+export const SHIFTS: ShiftType[] = [
+  {
+    key: 'AM',
+    label: 'Morning',
+    description: 'Morning Shift 09:00 - 12:30',
+  },
+  {
+    key: 'PM',
+    label: 'Afternoon',
+    description: 'Afternoon shift 14:00 - 18:00',
+  },
+];
 
 export const UNKNOWN_SHIFT: ShiftType = {
   key: 'UNKNOWN',
   label: 'Unknown Shift',
-}; 
-
+};

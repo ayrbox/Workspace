@@ -1,6 +1,6 @@
 /**
  * @param year
- * @param month 
+ * @param month
  */
 const getMonthDays = (year: number, month: number): Date[] => {
   const date = new Date(year, month, 1);

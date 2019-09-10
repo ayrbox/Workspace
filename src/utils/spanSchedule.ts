@@ -10,7 +10,7 @@ export type spanScheduleType = {
   span: number;
 };
 
-const spanSchedule = (schedule: scheduleType) => {
+const spanSchedule = (schedule: scheduleType): spanScheduleType[] => {
   // flatten the structure
   const flattenScheduleDays = Object.entries(schedule).map(([key, value]) => ({
     dayKey: key,
@@ -19,15 +19,14 @@ const spanSchedule = (schedule: scheduleType) => {
 
   const flattenScheduleShifts = flattenScheduleDays.map(({ dayKey, shifts }) => {
     return Object.entries(shifts).map(([key, value]) => ({
-      dayKey: dayKey, 
+      dayKey: dayKey,
       shift: key,
       workspace: value,
       span: 1,
     }));
   });
 
-  const flatSchedule = flatten(flattenScheduleShifts)
-
+  const flatSchedule = flatten(flattenScheduleShifts);
 
   return flatSchedule;
 };
@@ -44,8 +43,8 @@ export const generateRandomSchedule = (days: Date[], shifts: ShiftType[]): sched
         const { key } = WORKSPACES[rndSpace];
         return {
           ...shifts,
-          [shift.key]: key
-        }
+          [shift.key]: key,
+        };
       }, {}),
     };
   }, {});

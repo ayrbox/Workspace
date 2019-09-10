@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ShiftType, WORKSPACES, UNKNOWN_WORKSPACE } from '../../constants';
+import { ShiftType, WORKSPACES, UNKNOWN_WORKSPACE } from '../../../constants';
 // import CalendarContext from '../Calendar/CalendarContext';
 
 interface CalendarCellProps {

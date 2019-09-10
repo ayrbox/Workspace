@@ -1,9 +1,9 @@
 import React, { ReactElement, FC } from 'react';
 
 import CalendarContext from './CalendarContext';
-import getMonthDays from '../../utils/getMonthDays';
+import getMonthDays from '../../../utils/getMonthDays';
 
-import { WORKSPACES, SHIFTS, UNKNOWN_WORKSPACE } from '../../constants';
+import { WORKSPACES, SHIFTS, UNKNOWN_WORKSPACE } from '../../../constants';
 
 interface CalendarProps {
   children: ReactElement | ReactElement[];

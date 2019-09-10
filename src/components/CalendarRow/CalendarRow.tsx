@@ -4,7 +4,7 @@ import CalendarCell from '../CalendarCell';
 import CalendarContext from '../Calendar/CalendarContext';
 
 import dateKey from '../../utils/dateKey';
-import spanSchedule, { generateRandomSchedule, spinIt } from '../../utils/spanSchedule';
+import { generateRandomSchedule, flattenToArray, spanSchedule } from '../../utils/spanSchedule';
 
 export interface CalendarRowProps {
   employeeName: string;
@@ -13,16 +13,15 @@ export interface CalendarRowProps {
 const CalendarRow: FC<CalendarRowProps> = ({ employeeName }: CalendarRowProps) => {
   const { days, shifts } = useContext(CalendarContext);
 
-  const a = generateRandomSchedule(days, shifts);
-  const c = spanSchedule(a);
-  const b = spinIt(c);
-  console.log('Span >>>>>>>>>>>.', b);
+  const randomSchedule = generateRandomSchedule(days, shifts);
+  const flatSchedule = flattenToArray(randomSchedule);
+  const spannedSchedule = spanSchedule(flatSchedule);
 
   return (
     <>
       <tr>
         <td className="calendar__cell calendar__cell--name">{employeeName}</td>
-        {b.map(d => (
+        {spannedSchedule.map(d => (
           <td key={`${d.dayKey}-${d.shift}`} colSpan={d.span}>
             {d.workspace}
           </td>
@@ -30,7 +29,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ employeeName }: CalendarRowProps) =
       </tr>
       <tr>
         <td className="calendar__cell calendar__cell--name">{employeeName}</td>
-        {c.map(d => (
+        {flatSchedule.map(d => (
           <td key={`${d.dayKey}-${d.shift}`} colSpan={d.span}>
             {d.workspace}
           </td>

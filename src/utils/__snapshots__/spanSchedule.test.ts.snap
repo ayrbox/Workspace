@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`flattenToArray return flatten schedule 1`] = `
+Array [
+  Object {
+    "dayKey": "20190910",
+    "shift": "AM",
+    "span": 1,
+    "workspace": "OFF",
+  },
+  Object {
+    "dayKey": "20190910",
+    "shift": "PM",
+    "span": 1,
+    "workspace": "OFFICE",
+  },
+  Object {
+    "dayKey": "20190911",
+    "shift": "AM",
+    "span": 1,
+    "workspace": "OFFICE",
+  },
+  Object {
+    "dayKey": "20190911",
+    "shift": "PM",
+    "span": 1,
+    "workspace": "OFF",
+  },
+  Object {
+    "dayKey": "20190912",
+    "shift": "AM",
+    "span": 1,
+    "workspace": "HOME",
+  },
+  Object {
+    "dayKey": "20190912",
+    "shift": "PM",
+    "span": 1,
+    "workspace": "OFFICE",
+  },
+  Object {
+    "dayKey": "20190913",
+    "shift": "AM",
+    "span": 1,
+    "workspace": "OFFICE",
+  },
+  Object {
+    "dayKey": "20190913",
+    "shift": "PM",
+    "span": 1,
+    "workspace": "OFFICE",
+  },
+  Object {
+    "dayKey": "20190914",
+    "shift": "AM",
+    "span": 1,
+    "workspace": "OFF",
+  },
+  Object {
+    "dayKey": "20190914",
+    "shift": "PM",
+    "span": 1,
+    "workspace": "OFF",
+  },
+]
+`;
+
+exports[`spanSchedule returns span schedule 1`] = `
+Array [
+  Object {
+    "dayKey": "20190910",
+    "shift": "AM",
+    "span": 1,
+    "workspace": "HOME",
+  },
+  Object {
+    "dayKey": "20190910",
+    "shift": "PM",
+    "span": 2,
+    "workspace": "OFF",
+  },
+  Object {
+    "dayKey": "20190911",
+    "shift": "PM",
+    "span": 2,
+    "workspace": "HOME",
+  },
+  Object {
+    "dayKey": "20190912",
+    "shift": "PM",
+    "span": 1,
+    "workspace": "OFFICE",
+  },
+  Object {
+    "dayKey": "20190913",
+    "shift": "AM",
+    "span": 1,
+    "workspace": "OFF",
+  },
+  Object {
+    "dayKey": "20190913",
+    "shift": "PM",
+    "span": 2,
+    "workspace": "OFFICE",
+  },
+  Object {
+    "dayKey": "20190914",
+    "shift": "PM",
+    "span": 1,
+    "workspace": "OFF",
+  },
+]
+`;

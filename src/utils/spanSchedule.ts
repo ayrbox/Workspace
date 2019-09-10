@@ -61,7 +61,7 @@ export function spanSchedule(flatScheule: spanScheduleType[]): spanScheduleType[
   const spannedSchedule: spanScheduleType[] = [];
 
   for (let i = 0; i < flatScheule.length; i++) {
-    if (flatScheule[i].workspace != current.workspace) {
+    if (flatScheule[i].workspace !== current.workspace) {
       if (cnt > 0) {
         // document.write(current + ' comes --> ' + cnt + ' times<br>');
         // console.log(`${current.workspace} comes ${cnt} times`);

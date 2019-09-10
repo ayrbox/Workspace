@@ -1,14 +1,18 @@
 import React, { useContext, FC } from 'react';
+import { style } from 'typestyle';
 
 import CalendarCell from '../CalendarCell';
 import CalendarContext from '../Calendar/CalendarContext';
 
-import dateKey from '../../utils/dateKey';
 import { generateRandomSchedule, flattenToArray, spanSchedule } from '../../utils/spanSchedule';
 
 export interface CalendarRowProps {
   employeeName: string;
 }
+
+const nameCell = style({
+  minWidth: '200px',
+});
 
 const CalendarRow: FC<CalendarRowProps> = ({ employeeName }: CalendarRowProps) => {
   const { days, shifts } = useContext(CalendarContext);
@@ -17,33 +21,23 @@ const CalendarRow: FC<CalendarRowProps> = ({ employeeName }: CalendarRowProps) =
   const flatSchedule = flattenToArray(randomSchedule);
   const spannedSchedule = spanSchedule(flatSchedule);
 
+  // console.log(spannedSchedule);
+
   return (
     <>
       <tr>
-        <td className="calendar__cell calendar__cell--name">{employeeName}</td>
+        <td className={nameCell}>{employeeName}</td>
         {spannedSchedule.map(d => (
-          <td key={`${d.dayKey}-${d.shift}`} colSpan={d.span}>
-            {d.workspace}
-          </td>
+          <CalendarCell
+            key={`${d.dayKey}-${d.shift}`}
+            employeeName={employeeName}
+            dateKey={d.dayKey}
+            shift={d.shift}
+            workspace={d.workspace}
+            colSpan={d.span}
+          />
         ))}
       </tr>
-      <tr>
-        <td className="calendar__cell calendar__cell--name">{employeeName}</td>
-        {flatSchedule.map(d => (
-          <td key={`${d.dayKey}-${d.shift}`} colSpan={d.span}>
-            {d.workspace}
-          </td>
-        ))}
-      </tr>
-      {/* <tr>
-        <td className="calendar__cell calendar__cell--name">{employeeName}</td>
-        {days.map(day => {
-          const dKey = dateKey(day);
-          return shifts.map(shift => (
-            <CalendarCell key={`${dKey}-${shift.key}`} employeeName={employeeName} dateKey={dKey} shift={shift} />
-          ));
-        })}
-      </tr> */}
     </>
   );
 };

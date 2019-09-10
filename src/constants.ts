@@ -27,7 +27,7 @@ export const WORKSPACES: WorkspaceType[] = [
     description: 'Working in Office',
     state: 1,
     isDefault: true,
-    color: '#799be4',
+    color: 'transparent',
   },
   {
     key: 'OFF',

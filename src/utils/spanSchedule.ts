@@ -10,17 +10,22 @@ export type spanScheduleType = {
   span: number;
 };
 
+const isWeekend = (day: Date): boolean => {
+  const d = day.getDay();
+  return d === 6 || d === 0;
+};
+
 export const generateRandomSchedule = (days: Date[], shifts: ShiftType[]): scheduleType => {
   return days.reduce((schedule: scheduleType, day): scheduleType => {
     const dKey = dateKey(day);
     return {
       ...schedule,
       [dKey]: shifts.reduce((shifts: shiftScheduleType, shift): shiftScheduleType => {
-        const rndSpace = Math.floor(Math.random() * Math.floor(WORKSPACES.length));
+        const rndSpace = Math.floor(Math.random() * Math.floor(3));
         const { key } = WORKSPACES[rndSpace];
         return {
           ...shifts,
-          [shift.key]: key,
+          [shift.key]: isWeekend(day) ? 'NONWORKINGDAY' : key,
         };
       }, {}),
     };

@@ -16,14 +16,14 @@ export interface WorkspaceType {
 export const WORKSPACES: WorkspaceType[] = [
   {
     key: 'HOME',
-    label: 'Home',
+    label: '🏠',
     description: 'Working from Home',
     state: 1,
     color: '#c8f5c8',
   },
   {
     key: 'OFFICE',
-    label: 'Office',
+    label: '',
     description: 'Working in Office',
     state: 1,
     isDefault: true,
@@ -31,10 +31,17 @@ export const WORKSPACES: WorkspaceType[] = [
   },
   {
     key: 'OFF',
-    label: 'Off',
+    label: '',
     description: 'Day off of work / On Leave',
     state: 0,
     color: '#ffdead',
+  },
+  {
+    key: 'NONWORKINGDAY',
+    label: '',
+    description: 'Non working day / Weekends / Bank holiday',
+    state: 0,
+    color: '#f7f2cd',
   },
 ];
 

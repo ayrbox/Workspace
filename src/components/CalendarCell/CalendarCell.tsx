@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { style } from 'typestyle';
-import { color } from 'csx';
+import { color, px } from 'csx';
 import clsx from 'clsx';
 
 import { WORKSPACES } from '../../constants';
@@ -26,7 +26,7 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   colSpan,
 }: CalendarCellProps) => {
   const { defaultWorkspace } = useContext(CalendarContext);
-  const { label, color: backColor, state } = WORKSPACES.find(w => w.key === workspace) || defaultWorkspace;
+  const { label, color: backColor, state, description } = WORKSPACES.find(w => w.key === workspace) || defaultWorkspace;
 
   const tdStyle = style({
     padding: '0 !important', // todo: remove important
@@ -39,13 +39,14 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
     display: 'block',
     padding: '.75rem',
     borderLeft: `5px solid ${bgColor.darken('20%').toHexString()}`,
+    minHeight: px(43),
   });
 
   const textClass = clsx(spaceStyle, state === 0 && strippedOff);
 
   return (
     <td className={tdStyle} colSpan={colSpan}>
-      <span className={textClass}>{label}</span>
+      <span className={textClass} title={description}>{label}</span>
     </td>
   );
 };

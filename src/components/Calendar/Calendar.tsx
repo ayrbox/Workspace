@@ -22,7 +22,7 @@ const calendarClassName = style({
   borderRadius: '8px',
   padding: '32px',
   margin: '20px auto',
-  fontSize: '12px',
+  fontSize: '13px',
   overflow: 'hidden'
 });
 
@@ -32,7 +32,25 @@ const calendarHeader = style({
   textAlign: 'center',
   paddingBottom: '32px',
   borderBottom: '1px solid #ddd',
+  marginBottom: '32px',
 });
+
+const innerContainer = style({
+  overflowX: 'auto',
+  overflowY: 'hidden', // TODO: confirim to be hidden
+  padding: '0px',
+});
+
+const calendarTable = style({
+  marginLeft: '200px',
+  marginBottom: '0px !important',
+})
+
+const scrollFixer = style({
+  margin: 0,
+  padding: 0,
+  position: 'relative',
+})
 
 
 export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarProps) => {
@@ -46,14 +64,18 @@ export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarP
       }}
     >
       <div className={calendarClassName}>
-        <div className={calendarHeader}>
-          <h4>
-            {moment(month, 'MM').format('MMMM')}
-            {' '}
-            {year}
-          </h4>
+        <div className={scrollFixer}>
+          <div className={calendarHeader}>
+            <h4>
+              {moment(month, 'MM').format('MMMM')}
+              {' '}
+              {year}
+            </h4>
+          </div>
+          <div className={innerContainer}>
+            <table className={`table table-bordered table-striped ${calendarTable}`}>{children}</table>
+          </div>
         </div>
-        <table className="table table-bordered table-striped">{children}</table>
       </div>
     </CalendarContext.Provider>
   );

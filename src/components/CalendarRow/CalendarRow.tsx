@@ -12,6 +12,9 @@ export interface CalendarRowProps {
 
 const nameCell = style({
   minWidth: '200px',
+  position: 'absolute',
+  left: '0',
+  backgroundColor: '#fff',
 });
 
 const CalendarRow: FC<CalendarRowProps> = ({ employeeName }: CalendarRowProps) => {

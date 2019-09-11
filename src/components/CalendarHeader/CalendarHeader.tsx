@@ -12,9 +12,17 @@ export interface CalendarHeaderProps {
 const shiftHeaderCell = style({
   fontSize: '.75rem',
   textAlign: 'center',
-  // padding: '.75rem 0 !important', // TODO: remove important
   transform: 'rotate(315deg)',
 });
+
+const nameHeaderCell = style({
+  minWidth: '200px',
+  position: 'absolute',
+  left: '0',
+  backgroundColor: '#fff',
+  // border: '1px solid #fff !important',
+});
+
 
 const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps) => {
   const { days, shifts } = useContext(CalendarContext);
@@ -22,7 +30,7 @@ const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps)
   return (
     <thead>
       <tr>
-        <td rowSpan={2}>{label}</td>
+        <td className={nameHeaderCell}>{label}</td>
         {days.map(day => {
           const key = dateKey(day);
           return (
@@ -33,6 +41,7 @@ const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps)
         })}
       </tr>
       <tr>
+        <td className={nameHeaderCell}>{' - '}</td>
         {days.map(day => {
           const key = dateKey(day);
           return shifts.map(shift => (

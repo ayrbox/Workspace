@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react';
 import { style } from 'typestyle';
 
 import dateKey from '../../utils/dateKey';
-import { day, dayName } from '../../utils/dayName';
+import { dayNumber, dayName } from '../../utils/dayName';
 import CalendarContext from '../Calendar/CalendarContext';
 
 export interface CalendarHeaderProps {
@@ -33,6 +33,8 @@ const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps)
           const key = dateKey(day);
           return (
             <td key={key} colSpan={2} className="text-center">
+              {dayNumber(day)}
+              <br />
               {dayName(day)}
             </td>
           );

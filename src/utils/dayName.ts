@@ -9,4 +9,4 @@ export const dayNumber = (date: Date): string => moment(date).format('DD');
 export default {
   dayName,
   dayNumber,
-}
+};

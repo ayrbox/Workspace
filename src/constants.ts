@@ -34,7 +34,7 @@ export const WORKSPACES: WorkspaceType[] = [
     label: 'Off',
     description: 'Day off of work / On Leave',
     state: 0,
-    color: '#ffdead'
+    color: '#ffdead',
   },
 ];
 

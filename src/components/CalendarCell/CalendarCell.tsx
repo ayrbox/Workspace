@@ -5,7 +5,6 @@ import { color } from 'csx';
 import { WORKSPACES } from '../../constants';
 import CalendarContext from '../Calendar/CalendarContext';
 
-
 interface CalendarCellProps {
   employeeName: string;
   dateKey: string;
@@ -21,23 +20,25 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   workspace,
   colSpan,
 }: CalendarCellProps) => {
-  const { 
-    defaultWorkspace,
-  } = useContext(CalendarContext);
+  const { defaultWorkspace } = useContext(CalendarContext);
   const { label, color: backColor } = WORKSPACES.find(w => w.key === workspace) || defaultWorkspace;
 
   const tdStyle = style({
     padding: '0 !important', // todo: remove important
   });
 
+  const bgColor = color(backColor);
+
   const spaceStyle = style({
-    backgroundColor: color(backColor).toHexString(),
+    backgroundColor: bgColor.toHexString(),
     display: 'block',
     padding: '.75rem',
-    borderLeft: `5px solid ${color(backColor).darken('20%').toHexString()}`,
+    borderLeft: `5px solid ${bgColor.darken('20%').toHexString()}`,
   });
 
-  return <td className={tdStyle} colSpan={colSpan}>
-    <span className={spaceStyle}>{label}</span>
-  </td>;
+  return (
+    <td className={tdStyle} colSpan={colSpan}>
+      <span className={spaceStyle}>{label}</span>
+    </td>
+  );
 };

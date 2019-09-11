@@ -27,11 +27,11 @@ export const WORKSPACES: WorkspaceType[] = [
     description: 'Working in Office',
     state: 1,
     isDefault: true,
-    color: 'transparent',
+    color: '#fefefe',
   },
   {
     key: 'OFF',
-    label: 'Day Off',
+    label: 'Off',
     description: 'Day off of work / On Leave',
     state: 0,
     color: '#fac677',

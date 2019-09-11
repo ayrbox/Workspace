@@ -21,8 +21,6 @@ const CalendarRow: FC<CalendarRowProps> = ({ employeeName }: CalendarRowProps) =
   const flatSchedule = flattenToArray(randomSchedule);
   const spannedSchedule = spanSchedule(flatSchedule);
 
-  // console.log(spannedSchedule);
-
   return (
     <>
       <tr>

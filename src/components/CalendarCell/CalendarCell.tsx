@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
+import { style } from 'typestyle';
+import { color } from 'csx';
 
 import { WORKSPACES } from '../../constants';
 import CalendarContext from '../Calendar/CalendarContext';
+
 
 interface CalendarCellProps {
   employeeName: string;
@@ -21,7 +24,20 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   const { 
     defaultWorkspace,
   } = useContext(CalendarContext);
+  const { label, color: backColor } = WORKSPACES.find(w => w.key === workspace) || defaultWorkspace;
 
-  const { label, color } = WORKSPACES.find(w => w.key === workspace) || defaultWorkspace;
-  return <td style={{ backgroundColor: color }} colSpan={colSpan}>{label}</td>;
+  const tdStyle = style({
+    padding: '0 !important', // todo: remove
+  });
+
+  const spaceStyle = style({
+    backgroundColor: color(backColor).toHexString(),
+    display: 'block',
+    padding: '.75rem',
+    borderLeft: `5px solid ${color(backColor).darken('20%').toHexString()}`,
+  });
+
+  return <td className={tdStyle} colSpan={colSpan}>
+    <span className={spaceStyle}>{label}</span>
+  </td>;
 };

@@ -13,7 +13,7 @@ export interface CalendarRowProps {
 const nameCell = style({
   minWidth: '200px',
   position: 'absolute',
-  left: '0',
+  left: '1px',
   backgroundColor: '#fff',
 });
 

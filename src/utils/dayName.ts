@@ -1,7 +1,12 @@
 import moment from 'moment';
 
-const dayName = (date: Date): string => {
-  return moment(date).format('DD');
+export const dayName = (date: Date): string => {
+  return moment(date).format('dddd');
 };
 
-export default dayName;
+export const day = (date: Date): string => moment(date).format('DD');
+
+export default {
+  dayName,
+  day,
+}

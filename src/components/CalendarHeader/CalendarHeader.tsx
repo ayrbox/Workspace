@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react';
 import { style } from 'typestyle';
 
 import dateKey from '../../utils/dateKey';
-import dayName from '../../utils/dayName';
+import { day, dayName } from '../../utils/dayName';
 import CalendarContext from '../Calendar/CalendarContext';
 
 export interface CalendarHeaderProps {
@@ -18,10 +18,9 @@ const shiftHeaderCell = style({
 const nameHeaderCell = style({
   minWidth: '200px',
   position: 'absolute',
-  left: '0',
+  left: '1px',
   backgroundColor: '#fff',
 });
-
 
 const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps) => {
   const { days, shifts } = useContext(CalendarContext);

@@ -39,6 +39,7 @@ const innerContainer = style({
   overflowX: 'auto',
   overflowY: 'hidden', // TODO: confirim to be hidden
   padding: '0px',
+  border: '1px solid #dee2e6',
 });
 
 const calendarTable = style({
@@ -73,7 +74,7 @@ export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarP
             </h4>
           </div>
           <div className={innerContainer}>
-            <table className={`table table-bordered table-striped ${calendarTable}`}>{children}</table>
+            <table className={`table ${calendarTable}`}>{children}</table>
           </div>
         </div>
       </div>

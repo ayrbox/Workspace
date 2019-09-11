@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import dateKey from '../../../utils/dateKey';
-import dayName from '../../../utils/dayName';
+import { dayName } from '../../../utils/dayName';
 
 import CalendarContext from '../Calendar/CalendarContext';
 

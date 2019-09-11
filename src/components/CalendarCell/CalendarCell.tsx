@@ -27,7 +27,7 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   const { label, color: backColor } = WORKSPACES.find(w => w.key === workspace) || defaultWorkspace;
 
   const tdStyle = style({
-    padding: '0 !important', // todo: remove
+    padding: '0 !important', // todo: remove important
   });
 
   const spaceStyle = style({

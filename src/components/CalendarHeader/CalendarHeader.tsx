@@ -13,7 +13,7 @@ const shiftHeaderCell = style({
   fontSize: '.75rem',
   textAlign: 'center',
   // padding: '.75rem 0 !important', // TODO: remove important
-  transform: 'rotate(270deg)',
+  transform: 'rotate(315deg)',
 });
 
 const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps) => {

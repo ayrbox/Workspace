@@ -19,7 +19,7 @@ export const WORKSPACES: WorkspaceType[] = [
     label: 'Home',
     description: 'Working from Home',
     state: 1,
-    color: '#92c492',
+    color: '#c8f5c8',
   },
   {
     key: 'OFFICE',
@@ -34,7 +34,7 @@ export const WORKSPACES: WorkspaceType[] = [
     label: 'Off',
     description: 'Day off of work / On Leave',
     state: 0,
-    color: '#fac677',
+    color: '#ffdead'
   },
 ];
 

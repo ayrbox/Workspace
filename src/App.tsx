@@ -5,10 +5,14 @@ import CalendarRow from './components/CalendarRow';
 import CalendarHeader from './components/CalendarHeader';
 
 const App: React.FC = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
   return (
     <div className="App">
       <header className="App-header">
-        <Calendar year={2020} month={10}>
+        <Calendar year={year} month={month}>
           <CalendarHeader />
           <tbody>
             <CalendarRow employeeName="Ayrbox" />

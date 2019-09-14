@@ -16,7 +16,7 @@ export interface WorkspaceType {
 export const WORKSPACES: WorkspaceType[] = [
   {
     key: 'HOME',
-    label: '🏠',
+    label: 'Home',
     description: 'Working from Home',
     state: 1,
     color: '#c8f5c8',

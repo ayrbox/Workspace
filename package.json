@@ -12,6 +12,7 @@
     "clsx": "^1.0.4",
     "csx": "^10.0.0",
     "eslint-plugin-react": "^7.14.3",
+    "firebase": "^6.6.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.9.0",
@@ -25,7 +26,8 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint --ext .jsx,.js,.ts,.tsx ./src --ignore-pattern .gitignore --ignore-pattern serviceWorker.ts"
+    "lint": "./node_modules/.bin/eslint --ext .jsx,.js,.ts,.tsx ./src --ignore-pattern .gitignore --ignore-pattern serviceWorker.ts",
+    "seed": "node ./bin/seed.js"
   },
   "browserslist": {
     "production": [

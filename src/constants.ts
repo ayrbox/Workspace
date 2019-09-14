@@ -1,3 +1,9 @@
+export interface StaffType {
+  code: string;
+  name: string;
+  designation?: string;
+  isManager?: boolean;
+}
 export interface ShiftType {
   key: string;
   label: string;
@@ -70,3 +76,30 @@ export const UNKNOWN_SHIFT: ShiftType = {
   key: 'UNKNOWN',
   label: 'Unknown Shift',
 };
+
+
+export const SAMPLE_STAFF: StaffType[] = [
+  {
+    code: 'STAFF001',
+    name: 'Staff 1',
+    isManager: true,
+  }, {
+    code: 'STAFF002',
+    name: 'Staff 2',
+  }, {
+    code: 'STAFF003',
+    name: 'Staff 3',
+  }, {
+    code: 'STAFF004',
+    name: 'Staff 4',
+  }, {
+    code: 'STAFF005',
+    name: 'Staff 5',
+  }, {
+    code: 'STAFF006',
+    name: 'Staff 6',
+  }, {
+    code: 'STAFF007',
+    name: 'Staff 7',
+  },
+];

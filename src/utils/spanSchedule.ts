@@ -21,7 +21,7 @@ export const generateRandomSchedule = (days: Date[], shifts: ShiftType[]): sched
     return {
       ...schedule,
       [dKey]: shifts.reduce((shifts: shiftScheduleType, shift): shiftScheduleType => {
-        const rndSpace = Math.floor(Math.random() * Math.floor(3));
+        const rndSpace = Math.floor(Math.random() * Math.floor(2));
         const { key } = WORKSPACES[rndSpace];
         return {
           ...shifts,

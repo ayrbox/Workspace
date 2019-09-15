@@ -44,7 +44,7 @@ const CalendarRow: FC<CalendarRowProps> = ({
 
       setSchedule(a);
     });
-  }, [staffCode])
+  }, [staffCode, days])
   
 
   const flatSchedule = flattenToArray(schedule);

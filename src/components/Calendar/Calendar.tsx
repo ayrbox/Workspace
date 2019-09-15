@@ -1,16 +1,16 @@
-import React, { ReactElement, FC } from 'react';
-import moment from 'moment';
+import React, { useState, ReactElement, FC } from 'react';
 import { style } from 'typestyle';
 
-import CalendarContext from './CalendarContext';
+import CalendarContext, { NavigationDirection } from './CalendarContext';
 import getMonthDays from '../../utils/getMonthDays';
+import Header from './Header';
 
 import { WORKSPACES, SHIFTS, UNKNOWN_WORKSPACE } from '../../constants';
 
 interface CalendarProps {
   children: ReactElement | ReactElement[];
-  year?: number;
-  month?: number;
+  year: number;
+  month: number;
 }
 
 const defaultWorkspace = WORKSPACES.find(({ isDefault }) => isDefault);
@@ -24,14 +24,6 @@ const calendarClassName = style({
   margin: '20px auto',
   fontSize: '13px',
   overflow: 'hidden',
-});
-
-const calendarHeader = style({
-  width: '100%',
-  textAlign: 'center',
-  paddingBottom: '32px',
-  borderBottom: '1px solid #ddd',
-  marginBottom: '32px',
 });
 
 const innerContainer = style({
@@ -53,25 +45,40 @@ const scrollFixer = style({
 });
 
 export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarProps) => {
-  const days = getMonthDays(year || 2019, month || 8);
+  const [currentYear, setYear] = useState(year);
+  const [currentMonth, setMonth] = useState(month);
+
+  const handleNavigation =(direction: NavigationDirection) => {
+    let year_ = currentYear;
+    let month_ = currentMonth + direction;
+
+    if(month_ < 0) {
+      year_ = currentYear - 1;
+      month_ = 11;
+    }
+
+    if(month_ > 11) {
+      year_ = currentYear + 1;
+      month_ = 0;
+    }
+
+    setMonth(month_);
+    setYear(year_);
+  }
+
+  const days = getMonthDays(currentYear, currentMonth);
   return (
     <CalendarContext.Provider
       value={{
         days: days,
         shifts: SHIFTS,
-        defaultWorkspace: defaultWorkspace || UNKNOWN_WORKSPACE,
+        defaultWorkspace: (defaultWorkspace || UNKNOWN_WORKSPACE),
+        onNavigate: handleNavigation
       }}
     >
       <div className={calendarClassName}>
         <div className={scrollFixer}>
-          <div className={calendarHeader}>
-            <h4>
-              {`
-                ${moment(month, 'MM').format('MMMM')}
-                ${year} 
-              `}
-            </h4>
-          </div>
+          <Header monthIndex={currentMonth} year={currentYear} /> 
           <div className={innerContainer}>
             <table className={`table ${calendarTable}`}>{children}</table>
           </div>
@@ -79,11 +86,6 @@ export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarP
       </div>
     </CalendarContext.Provider>
   );
-};
-
-Calendar.defaultProps = {
-  year: 2019,
-  month: 8,
 };
 
 export default Calendar;

@@ -5,7 +5,7 @@ import merge from 'lodash/merge';
 import CalendarCell from '../CalendarCell';
 import CalendarContext from '../Calendar/CalendarContext';
 
-import db from '../../repository';
+import { database } from '../../repository';
 import { flattenToArray, spanSchedule, blankSchedule } from '../../utils/spanSchedule';
 import dateKey from '../../utils/dateKey';
 import { fullScheduleType, scheduleType } from '../../types/scheduleType';
@@ -32,7 +32,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: Calendar
     const start_ = dateKey(days[0]);
     const end_ = dateKey(days[days.length - 1]);
 
-    db.ref(`schedules`)
+    database.ref(`schedules`)
       .orderByKey()
       .startAt(start_)
       .endAt(end_)

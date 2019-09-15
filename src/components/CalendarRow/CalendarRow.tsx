@@ -52,7 +52,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: Calendar
           setSchedule(blank_);
         }
       });
-  }, [staffCode, days]);
+  }, [staffCode, days, blank_]);
 
   const flatSchedule = flattenToArray(schedule);
   const spannedSchedule = spanSchedule(flatSchedule);

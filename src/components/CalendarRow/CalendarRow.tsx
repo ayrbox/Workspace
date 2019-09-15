@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, FC } from 'react';
 import { style } from 'typestyle';
+import merge from 'lodash/merge';
 
 import CalendarCell from '../CalendarCell';
 import CalendarContext from '../Calendar/CalendarContext';
@@ -34,7 +35,6 @@ const CalendarRow: FC<CalendarRowProps> = ({
     const start_ = dateKey(days[0]);
     const end_ = dateKey(days[days.length - 1]);
 
-    // TODO: move logic to different file 
     db.ref(`schedules`).orderByKey().startAt(start_).endAt(end_).on('value', (snapshot) => {
       const s = snapshot.val() as fullScheduleType;
       if(s) {
@@ -43,7 +43,7 @@ const CalendarRow: FC<CalendarRowProps> = ({
           [key]: values[staffCode] // { 20190915: { AM: 'OFFICE', 'PM': 'OFFICE' }}
         }), {});
 
-        setSchedule(a);
+        setSchedule(merge({}, blank_, a));
       } else {
         setSchedule(blank_);
       }

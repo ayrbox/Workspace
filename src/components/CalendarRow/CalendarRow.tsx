@@ -37,12 +37,17 @@ const CalendarRow: FC<CalendarRowProps> = ({
     // TODO: move logic to different file 
     db.ref(`schedules`).orderByKey().startAt(start_).endAt(end_).on('value', (snapshot) => {
       const s = snapshot.val() as fullScheduleType;
-      const a = Object.entries(s).reduce<scheduleType>((returnSchedule, [key, values]) => ({
-        ...returnSchedule,
-        [key]: values[staffCode] // { 20190915: { AM: 'OFFICE', 'PM': 'OFFICE' }}
-      }), {});
+      if(s) {
+        const a = Object.entries(s).reduce<scheduleType>((returnSchedule, [key, values]) => ({
+          ...returnSchedule,
+          [key]: values[staffCode] // { 20190915: { AM: 'OFFICE', 'PM': 'OFFICE' }}
+        }), {});
 
-      setSchedule(a);
+        setSchedule(a);
+      } else {
+        setSchedule(blank_);
+      }
+      
     });
   }, [staffCode, days])
   

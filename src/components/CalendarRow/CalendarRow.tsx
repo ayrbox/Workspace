@@ -5,7 +5,7 @@ import CalendarCell from '../CalendarCell';
 import CalendarContext from '../Calendar/CalendarContext';
 
 import db from '../../repository';
-import { generateRandomSchedule, flattenToArray, spanSchedule, blankSchedule } from '../../utils/spanSchedule';
+import { flattenToArray, spanSchedule, blankSchedule } from '../../utils/spanSchedule';
 import dateKey from '../../utils/dateKey';
 import { fullScheduleType, scheduleType } from '../../types/scheduleType';
 
@@ -34,7 +34,8 @@ const CalendarRow: FC<CalendarRowProps> = ({
     const start_ = dateKey(days[0]);
     const end_ = dateKey(days[days.length - 1]);
 
-    db.ref(`schedules`).orderByKey().startAt(start_).endAt(end_).once('value', (snapshot) => {
+    // TODO: move logic to different file 
+    db.ref(`schedules`).orderByKey().startAt(start_).endAt(end_).on('value', (snapshot) => {
       const s = snapshot.val() as fullScheduleType;
       const a = Object.entries(s).reduce<scheduleType>((returnSchedule, [key, values]) => ({
         ...returnSchedule,

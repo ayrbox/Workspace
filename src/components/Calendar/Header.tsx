@@ -3,6 +3,7 @@ import moment from 'moment';
 import { style } from 'typestyle';
 
 import CalendarContext, { NavigationDirection } from '../Calendar/CalendarContext';
+import { Previous, Next } from '../NavigationButtons';
 
 export interface HeaderProps {
   year: number;
@@ -23,30 +24,24 @@ const calendarHeader = style({
 const Header: FC<HeaderProps> = ({
   year,
   monthIndex,
-}: HeaderProps) => {
+}: HeaderProps): ReactElement => {
 
   const { onNavigate } = useContext(CalendarContext);
 
   return (
     <div className={calendarHeader}>
-      <button
-        type="button"
+      <Previous
         onClick={() => onNavigate(NavigationDirection.PREVIOUS)}
-      >
-        &lt;
-      </button>
+      />
       <h4>
         {`
           ${moment(monthIndex + 1, 'MM').format('MMMM')}
           ${year} 
         `}
       </h4>
-      <button
-        type="button"
+      <Next
         onClick={() => onNavigate(NavigationDirection.NEXT)}
-      >
-        &gt; 
-      </button>
+      />
     </div>
   );
 };

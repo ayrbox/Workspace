@@ -32,7 +32,8 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: Calendar
     const start_ = dateKey(days[0]);
     const end_ = dateKey(days[days.length - 1]);
 
-    database.ref(`schedules`)
+    database
+      .ref(`schedules`)
       .orderByKey()
       .startAt(start_)
       .endAt(end_)

@@ -1,16 +1,11 @@
-import React, { useContext, useState, FormEvent, FC } from 'react'
+import React, { useContext, useState, FormEvent, FC } from 'react';
 import UserContext from '../../UserContext';
 import { RouteComponentProps } from 'react-router';
 
 type LoginProps = RouteComponentProps;
 
-const Login: FC<LoginProps> = ({
-  history,
-}: LoginProps) => {
-  const {
-    user,
-    login,
-  } = useContext(UserContext);
+const Login: FC<LoginProps> = ({ history }: LoginProps) => {
+  const { user, login } = useContext(UserContext);
 
   // Redirect to admin if user is already loggedn in.
   if (user) {
@@ -45,17 +40,9 @@ const Login: FC<LoginProps> = ({
 
   return (
     <div>
-      <h1>Login Component</h1> 
-      <form
-        onSubmit={handleLogin}
-      >
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={userCredential.email}
-          onChange={handleChange}
-        />
+      <h1>Login Component</h1>
+      <form onSubmit={handleLogin}>
+        <input type="text" name="email" placeholder="Email" value={userCredential.email} onChange={handleChange} />
         <input
           type="password"
           name="password"
@@ -63,12 +50,10 @@ const Login: FC<LoginProps> = ({
           value={userCredential.password}
           onChange={handleChange}
         />
-        <button type="submit">
-          Login 
-        </button>
+        <button type="submit">Login</button>
       </form>
     </div>
-  )
+  );
 };
 
 export default Login;

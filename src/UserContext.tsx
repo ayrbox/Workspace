@@ -3,7 +3,7 @@ import { User } from 'firebase';
 
 interface UserContextProps {
   user?: User | null;
-  login: (email: string, password: string) => void; 
+  login: (email: string, password: string) => void;
   logout: () => void;
 }
 

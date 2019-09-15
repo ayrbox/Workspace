@@ -1,8 +1,26 @@
 import React, { useContext, useState, FormEvent, FC } from 'react';
+import { style } from 'typestyle';
+
 import UserContext from '../../UserContext';
 import { RouteComponentProps } from 'react-router';
 
 type LoginProps = RouteComponentProps;
+
+const formSignin = style({
+  width: '100%',
+  maxWidth: '330px',
+  padding: '15px',
+  margin: 'auto',
+});
+
+const formContainer = style({
+  border: '1px solid red',
+  height: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignContent: 'center',
+  textAlign: 'center',
+});
 
 const Login: FC<LoginProps> = ({ history }: LoginProps) => {
   const { user, login } = useContext(UserContext);
@@ -39,18 +57,34 @@ const Login: FC<LoginProps> = ({ history }: LoginProps) => {
   };
 
   return (
-    <div>
-      <h1>Login Component</h1>
-      <form onSubmit={handleLogin}>
-        <input type="text" name="email" placeholder="Email" value={userCredential.email} onChange={handleChange} />
+    <div className={formContainer}>
+      <form className={formSignin} onSubmit={handleLogin}>
+        <h1 className="h3 mb-3 font-weight-normal">Login</h1>
+        <label htmlFor="inputEmail" className="sr-only">
+          Email
+        </label>
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          value={userCredential.email}
+          onChange={handleChange}
+          className="form-control"
+        />
+        <label htmlFor="inputPassword" className="sr-only">
+          Password
+        </label>
         <input
           type="password"
           name="password"
           placeholder="Password"
           value={userCredential.password}
           onChange={handleChange}
+          className="form-control"
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="btn btn-outline-primary">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -21,27 +21,19 @@ const calendarHeader = style({
   alignContent: 'center',
 });
 
-const Header: FC<HeaderProps> = ({
-  year,
-  monthIndex,
-}: HeaderProps): ReactElement => {
-
+const Header: FC<HeaderProps> = ({ year, monthIndex }: HeaderProps): ReactElement => {
   const { onNavigate } = useContext(CalendarContext);
 
   return (
     <div className={calendarHeader}>
-      <Previous
-        onClick={() => onNavigate(NavigationDirection.PREVIOUS)}
-      />
+      <Previous onClick={(): void => onNavigate(NavigationDirection.PREVIOUS)} />
       <h4>
         {`
           ${moment(monthIndex + 1, 'MM').format('MMMM')}
           ${year} 
         `}
       </h4>
-      <Next
-        onClick={() => onNavigate(NavigationDirection.NEXT)}
-      />
+      <Next onClick={(): void => onNavigate(NavigationDirection.NEXT)} />
     </div>
   );
 };

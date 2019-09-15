@@ -17,12 +17,8 @@ const App: React.FC = () => {
         <Calendar year={year} month={month}>
           <CalendarHeader />
           <tbody>
-            {SAMPLE_STAFF.map(({code, name}) => (
-              <CalendarRow
-                key={code}
-                staffCode={code} 
-                employeeName={name}
-              />
+            {SAMPLE_STAFF.map(({ code, name }) => (
+              <CalendarRow key={code} staffCode={code} employeeName={name} />
             ))}
           </tbody>
         </Calendar>

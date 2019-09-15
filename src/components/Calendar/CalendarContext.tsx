@@ -3,8 +3,8 @@ import { ShiftType, WorkspaceType, UNKNOWN_WORKSPACE } from '../../constants';
 
 export enum NavigationDirection {
   PREVIOUS = -1,
-  NEXT = 1, 
-};
+  NEXT = 1,
+}
 
 type CalendarContextProps = {
   days: Date[];

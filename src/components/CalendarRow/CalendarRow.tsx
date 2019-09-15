@@ -22,10 +22,7 @@ const nameCell = style({
   backgroundColor: '#fff',
 });
 
-const CalendarRow: FC<CalendarRowProps> = ({
-  staffCode,
-  employeeName,
-}: CalendarRowProps) => {
+const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: CalendarRowProps) => {
   const { days, shifts } = useContext(CalendarContext);
 
   const blank_ = blankSchedule(days, shifts);
@@ -35,22 +32,27 @@ const CalendarRow: FC<CalendarRowProps> = ({
     const start_ = dateKey(days[0]);
     const end_ = dateKey(days[days.length - 1]);
 
-    db.ref(`schedules`).orderByKey().startAt(start_).endAt(end_).on('value', (snapshot) => {
-      const s = snapshot.val() as fullScheduleType;
-      if(s) {
-        const a = Object.entries(s).reduce<scheduleType>((returnSchedule, [key, values]) => ({
-          ...returnSchedule,
-          [key]: values[staffCode] // { 20190915: { AM: 'OFFICE', 'PM': 'OFFICE' }}
-        }), {});
+    db.ref(`schedules`)
+      .orderByKey()
+      .startAt(start_)
+      .endAt(end_)
+      .on('value', snapshot => {
+        const s = snapshot.val() as fullScheduleType;
+        if (s) {
+          const a = Object.entries(s).reduce<scheduleType>(
+            (returnSchedule, [key, values]) => ({
+              ...returnSchedule,
+              [key]: values[staffCode], // { 20190915: { AM: 'OFFICE', 'PM': 'OFFICE' }}
+            }),
+            {},
+          );
 
-        setSchedule(merge({}, blank_, a));
-      } else {
-        setSchedule(blank_);
-      }
-      
-    });
-  }, [staffCode, days])
-  
+          setSchedule(merge({}, blank_, a));
+        } else {
+          setSchedule(blank_);
+        }
+      });
+  }, [staffCode, days]);
 
   const flatSchedule = flattenToArray(schedule);
   const spannedSchedule = spanSchedule(flatSchedule);

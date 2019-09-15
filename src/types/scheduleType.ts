@@ -8,8 +8,8 @@ export type scheduleType = {
 
 export type staffScheduleType = {
   [key: string]: shiftScheduleType;
-}
+};
 
 export type fullScheduleType = {
   [key: string]: staffScheduleType;
-}
+};

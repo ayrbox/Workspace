@@ -46,7 +46,9 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
 
   return (
     <td className={tdStyle} colSpan={colSpan}>
-      <span className={textClass} title={description}>{label}</span>
+      <span className={textClass} title={description}>
+        {label}
+      </span>
     </td>
   );
 };

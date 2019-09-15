@@ -2,15 +2,8 @@ import React, { FC } from 'react';
 import { buttonStyle } from './styles';
 import { NavigationButtonProp } from './types';
 
-
-const Next: FC<NavigationButtonProp> = ({
-  onClick,
-}: NavigationButtonProp) => (
-  <button
-    type="button"
-    className={buttonStyle}
-    onClick={onClick}
-  >
+const Next: FC<NavigationButtonProp> = ({ onClick }: NavigationButtonProp) => (
+  <button type="button" className={buttonStyle} onClick={onClick}>
     <svg
       className="MuiSvgIcon-root jss966"
       focusable="false"

@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import getMonthDays from './utils/getMonthDays';
-import { generateRandomSchedule } from './utils/spanSchedule';
-import { SAMPLE_STAFF, SHIFTS, UNKNOWN_WORKSPACE } from './constants';
-import db from './repository';
+// import getMonthDays from './utils/getMonthDays';
+// import { generateRandomSchedule } from './utils/spanSchedule';
+// import { SAMPLE_STAFF, SHIFTS, UNKNOWN_WORKSPACE } from './constants';
+// import db from './repository';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

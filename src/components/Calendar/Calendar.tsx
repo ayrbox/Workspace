@@ -48,23 +48,23 @@ export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarP
   const [currentYear, setYear] = useState(year);
   const [currentMonth, setMonth] = useState(month);
 
-  const handleNavigation =(direction: NavigationDirection) => {
+  const handleNavigation = (direction: NavigationDirection): void => {
     let year_ = currentYear;
     let month_ = currentMonth + direction;
 
-    if(month_ < 0) {
+    if (month_ < 0) {
       year_ = currentYear - 1;
       month_ = 11;
     }
 
-    if(month_ > 11) {
+    if (month_ > 11) {
       year_ = currentYear + 1;
       month_ = 0;
     }
 
     setMonth(month_);
     setYear(year_);
-  }
+  };
 
   const days = getMonthDays(currentYear, currentMonth);
   return (
@@ -72,13 +72,13 @@ export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarP
       value={{
         days: days,
         shifts: SHIFTS,
-        defaultWorkspace: (defaultWorkspace || UNKNOWN_WORKSPACE),
-        onNavigate: handleNavigation
+        defaultWorkspace: defaultWorkspace || UNKNOWN_WORKSPACE,
+        onNavigate: handleNavigation,
       }}
     >
       <div className={calendarClassName}>
         <div className={scrollFixer}>
-          <Header monthIndex={currentMonth} year={currentYear} /> 
+          <Header monthIndex={currentMonth} year={currentYear} />
           <div className={innerContainer}>
             <table className={`table ${calendarTable}`}>{children}</table>
           </div>

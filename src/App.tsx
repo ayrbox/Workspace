@@ -4,6 +4,8 @@ import Calendar from './components/Calendar';
 import CalendarRow from './components/CalendarRow';
 import CalendarHeader from './components/CalendarHeader';
 
+import { SAMPLE_STAFF } from './constants';
+
 const App: React.FC = () => {
   const today = new Date();
   const year = today.getFullYear();
@@ -15,13 +17,13 @@ const App: React.FC = () => {
         <Calendar year={year} month={month}>
           <CalendarHeader />
           <tbody>
-            <CalendarRow employeeName="Ayrbox" />
-            <CalendarRow employeeName="Beans" />
-            <CalendarRow employeeName="Employee 1" />
-            <CalendarRow employeeName="Employee 2" />
-            <CalendarRow employeeName="Employee 3" />
-            <CalendarRow employeeName="Employee 4" />
-            <CalendarRow employeeName="Employee 5" />
+            {SAMPLE_STAFF.map(({code, name}) => (
+              <CalendarRow
+                key={code}
+                staffCode={code} 
+                employeeName={name}
+              />
+            ))}
           </tbody>
         </Calendar>
       </header>

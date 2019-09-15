@@ -32,6 +32,22 @@ export const generateRandomSchedule = (days: Date[], shifts: ShiftType[]): sched
   }, {});
 };
 
+export const blankSchedule = (days: Date[], shifts: ShiftType[]): scheduleType => {
+  return days.reduce((schedule: scheduleType, day): scheduleType => {
+    const dKey = dateKey(day);
+    return {
+      ...schedule,
+      [dKey]: shifts.reduce((shifts: shiftScheduleType, shift): shiftScheduleType => {
+        const { key } = WORKSPACES[1];
+        return {
+          ...shifts,
+          [shift.key]: isWeekend(day) ? 'NONWORKINGDAY' : key,
+        };
+      }, {}),
+    };
+  }, {});
+};
+
 export const flattenToArray = (schedule: scheduleType): spanScheduleType[] => {
   // flatten the structure
   const flattenScheduleDays = Object.entries(schedule).map(([key, value]) => ({

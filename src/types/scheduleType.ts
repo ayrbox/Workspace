@@ -5,3 +5,11 @@ export type shiftScheduleType = {
 export type scheduleType = {
   [key: string]: shiftScheduleType;
 };
+
+export type staffScheduleType = {
+  [key: string]: shiftScheduleType;
+}
+
+export type fullScheduleType = {
+  [key: string]: staffScheduleType;
+}

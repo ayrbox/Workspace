@@ -1,12 +1,16 @@
-import React, { useContext, FC } from 'react';
+import React, { useState, useEffect, useContext, FC } from 'react';
 import { style } from 'typestyle';
 
 import CalendarCell from '../CalendarCell';
 import CalendarContext from '../Calendar/CalendarContext';
 
-import { generateRandomSchedule, flattenToArray, spanSchedule } from '../../utils/spanSchedule';
+import db from '../../repository';
+import { generateRandomSchedule, flattenToArray, spanSchedule, blankSchedule } from '../../utils/spanSchedule';
+import dateKey from '../../utils/dateKey';
+import { fullScheduleType, scheduleType } from '../../types/scheduleType';
 
 export interface CalendarRowProps {
+  staffCode: string;
   employeeName: string;
 }
 
@@ -17,11 +21,32 @@ const nameCell = style({
   backgroundColor: '#fff',
 });
 
-const CalendarRow: FC<CalendarRowProps> = ({ employeeName }: CalendarRowProps) => {
+const CalendarRow: FC<CalendarRowProps> = ({
+  staffCode,
+  employeeName,
+}: CalendarRowProps) => {
   const { days, shifts } = useContext(CalendarContext);
 
-  const randomSchedule = generateRandomSchedule(days, shifts);
-  const flatSchedule = flattenToArray(randomSchedule);
+  const blank_ = blankSchedule(days, shifts);
+  const [schedule, setSchedule] = useState(blank_);
+
+  useEffect(() => {
+    const start_ = dateKey(days[0]);
+    const end_ = dateKey(days[days.length - 1]);
+
+    db.ref(`schedules`).orderByKey().startAt(start_).endAt(end_).once('value', (snapshot) => {
+      const s = snapshot.val() as fullScheduleType;
+      const a = Object.entries(s).reduce<scheduleType>((returnSchedule, [key, values]) => ({
+        ...returnSchedule,
+        [key]: values[staffCode] // { 20190915: { AM: 'OFFICE', 'PM': 'OFFICE' }}
+      }), {});
+
+      setSchedule(a);
+    });
+  }, [staffCode])
+  
+
+  const flatSchedule = flattenToArray(schedule);
   const spannedSchedule = spanSchedule(flatSchedule);
 
   return (

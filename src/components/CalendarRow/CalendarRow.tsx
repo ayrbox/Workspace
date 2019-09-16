@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, FC } from 'react';
 import { style } from 'typestyle';
-import merge from 'lodash/merge';
+import merge_ from 'lodash/merge';
 
 import CalendarCell from '../CalendarCell';
 import CalendarContext from '../Calendar/CalendarContext';
@@ -13,6 +13,7 @@ import { fullScheduleType, scheduleType } from '../../types/scheduleType';
 export interface CalendarRowProps {
   staffCode: string;
   employeeName: string;
+  merge?: boolean;
 }
 
 const nameCell = style({
@@ -22,7 +23,7 @@ const nameCell = style({
   backgroundColor: '#fff',
 });
 
-const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: CalendarRowProps) => {
+const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: CalendarRowProps) => {
   const { days, shifts } = useContext(CalendarContext);
 
   const blank_ = blankSchedule(days, shifts);
@@ -50,21 +51,23 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: Calendar
             {},
           );
 
-          setSchedule(merge({}, defaultSchedule, a));
+          setSchedule(merge_({}, defaultSchedule, a));
         } else {
           setSchedule(defaultSchedule);
         }
       });
   }, [staffCode, days, shifts]);
 
-  const flatSchedule = flattenToArray(schedule);
-  const spannedSchedule = spanSchedule(flatSchedule);
+  let flatSchedule = flattenToArray(schedule);
+  if (merge) {
+    flatSchedule = spanSchedule(flatSchedule);
+  }
 
   return (
     <>
       <tr>
         <td className={nameCell}>{employeeName}</td>
-        {spannedSchedule.map(d => (
+        {flatSchedule.map(d => (
           <CalendarCell
             key={`${d.dayKey}-${d.shift}`}
             employeeName={employeeName}
@@ -77,6 +80,10 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: Calendar
       </tr>
     </>
   );
+};
+
+CalendarRow.defaultProps = {
+  merge: true,
 };
 
 export default CalendarRow;

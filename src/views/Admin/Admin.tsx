@@ -1,8 +1,12 @@
 import React, { FC, useContext } from 'react';
 import { style } from 'typestyle';
 
-import UserContext from '../../UserContext';
 import { RouteComponentProps } from 'react-router';
+import UserContext from '../../UserContext';
+import Calendar from '../../components/Calendar';
+import CalendarHeader from '../../components/CalendarHeader';
+import CalendarRow from '../../components/CalendarRow';
+import { SAMPLE_STAFF } from '../../constants';
 
 type AdminViewProps = RouteComponentProps;
 
@@ -31,7 +35,6 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
   }
 
   return (
-
     <div>
       <header className={`${masthead} mb-auto`}>
         <div className={mastheadInner}>
@@ -42,14 +45,21 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
           </nav>
         </div>
       </header>
-      <h1>Admin View: {user.email}</h1>
-      <pre>
-        {JSON.stringify(user, null, 2)}
-        {JSON.stringify(history, null, 2)}
-      </pre>
-      <button type="button" onClick={logout}>
-        Logout
-      </button>
+      <div className="container">
+        <Calendar month={8} year={2019}>
+          <CalendarHeader />
+          <tbody>
+            {SAMPLE_STAFF.map(({ code, name }) => (
+              <CalendarRow
+                key={code}
+                staffCode={code}
+                employeeName={name}
+                merge={false}
+              />
+            ))}
+          </tbody>
+        </Calendar>
+      </div>
     </div>
   );
 };

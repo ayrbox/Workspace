@@ -41,7 +41,9 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
           <h3 className="masthead-brand">Workspace</h3>
           <nav className="nav nav-masthead justify-content-center">
             <div className="nav-link">{user.email}</div>
-            <a className="nav-link" onClick={logout}>Logout</a>
+            <a className="nav-link" onClick={logout} role="button">
+              Logout
+            </a>
           </nav>
         </div>
       </header>
@@ -50,12 +52,7 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
           <CalendarHeader />
           <tbody>
             {SAMPLE_STAFF.map(({ code, name }) => (
-              <CalendarRow
-                key={code}
-                staffCode={code}
-                employeeName={name}
-                merge={false}
-              />
+              <CalendarRow key={code} staffCode={code} employeeName={name} merge={false} />
             ))}
           </tbody>
         </Calendar>

@@ -36,7 +36,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: C
     const defaultSchedule = blankSchedule(days, shifts);
 
     database
-      .ref(`schedules`)
+      .ref('schedules')
       .orderByKey()
       .startAt(start_)
       .endAt(end_)
@@ -56,7 +56,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: C
           setSchedule(defaultSchedule);
         }
       });
-  }, [staffCode, days, shifts]);
+  }, [staffCode, days]);
 
   let flatSchedule = flattenToArray(schedule);
   if (merge) {

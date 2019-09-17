@@ -28,19 +28,21 @@ const App: React.FC = () => {
   });
 
   return (
-    <Router>
-      <UserContext.Provider
-        value={{
-          login: handleLogin,
-          logout: handleLogout,
-          user: currentUser,
-        }}
-      >
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/admin" component={Admin} />
-        <Route exact path="/" component={Schedule} />
-      </UserContext.Provider>
-    </Router>
+    <UserContext.Provider
+      value={{
+        login: handleLogin,
+        logout: handleLogout,
+        user: currentUser,
+      }}
+    >
+      <Router>
+        <>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/" component={Schedule} />
+        </>
+      </Router>
+    </UserContext.Provider>
   );
 };
 

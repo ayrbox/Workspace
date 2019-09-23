@@ -1,3 +1,7 @@
+/**
+ * NOTE: config file should be named `firebase.config.ts`
+ * */
+
 export const firebaseConfig = {
   apiKey: 'api-key',
   authDomain: 'project-id.firebaseapp.com',

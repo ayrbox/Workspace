@@ -32,6 +32,8 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: Calendar
     const start_ = dateKey(days[0]);
     const end_ = dateKey(days[days.length - 1]);
 
+    const defaultSchedule = blankSchedule(days, shifts);
+
     database
       .ref(`schedules`)
       .orderByKey()
@@ -48,12 +50,12 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName }: Calendar
             {},
           );
 
-          setSchedule(merge({}, blank_, a));
+          setSchedule(merge({}, defaultSchedule, a));
         } else {
-          setSchedule(blank_);
+          setSchedule(defaultSchedule);
         }
       });
-  }, [staffCode, days, blank_]);
+  }, [staffCode, days, shifts]);
 
   const flatSchedule = flattenToArray(schedule);
   const spannedSchedule = spanSchedule(flatSchedule);

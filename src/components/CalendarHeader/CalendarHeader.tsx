@@ -28,7 +28,11 @@ const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps)
   return (
     <thead>
       <tr>
-        <td className={nameHeaderCell}>{label}</td>
+        <td className={nameHeaderCell}>
+          {label}
+          <br />
+          <br />
+        </td>
         {days.map(day => {
           const key = dateKey(day);
           return (

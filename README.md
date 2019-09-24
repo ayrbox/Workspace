@@ -21,6 +21,9 @@ Development server runs locally at port 3000
 ### Firebase
 To connect to firebase, create `firebase.config.ts` from `example.firebase.ts` in `config` folder with firebase credentials and api keys.  
 
+### Admin
+The schedule can be administered from `<host>/admin`.
+
 ```js
 export const firebaseConfig = {
   apiKey: 'api-key',

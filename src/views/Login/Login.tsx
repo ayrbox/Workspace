@@ -24,13 +24,12 @@ const Login: FC = () => {
   const { user, login } = useContext(UserContext);
 
   const [userCredential, setUserCredential] = useState({
-    email: 'admin@workspace.com',
-    password: 'password',
+    email: '',
+    password: '',
   });
 
   // Redirect to admin if user is already loggedn in.
   if (user) {
-    // history.push('/admin');
     return <Redirect to="/admin" />;
   }
 

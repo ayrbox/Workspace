@@ -1,7 +1,7 @@
 import React, { FC, useContext, useState } from 'react';
 import { style } from 'typestyle';
 
-import { RouteComponentProps } from 'react-router';
+import { Redirect } from 'react-router';
 import UserContext from '../../UserContext';
 import Calendar from '../../components/Calendar';
 import CalendarHeader from '../../components/CalendarHeader';
@@ -9,8 +9,6 @@ import CalendarRow from '../../components/CalendarRow';
 import Workspaces from './components/Workspaces';
 import { SAMPLE_STAFF, WorkspaceType, WORKSPACES } from '../../constants';
 import AdminViewContext from './AdminContext';
-
-type AdminViewProps = RouteComponentProps;
 
 const masthead = style({
   background: '#000',
@@ -28,13 +26,12 @@ const mastheadInner = style({
   margin: 'auto',
 });
 
-const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
+const AdminView: FC = () => {
   const { user, logout } = useContext(UserContext);
   const [workspace, setWorkspace] = useState(WORKSPACES[0]);
 
   if (!user) {
-    history.push('/login');
-    return null;
+    return <Redirect to="/login" />;
   }
 
   return (

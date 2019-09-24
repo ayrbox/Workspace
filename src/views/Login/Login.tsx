@@ -2,9 +2,7 @@ import React, { useContext, useState, FormEvent, FC } from 'react';
 import { style } from 'typestyle';
 
 import UserContext from '../../UserContext';
-import { RouteComponentProps } from 'react-router';
-
-type LoginProps = RouteComponentProps;
+import { Redirect } from 'react-router';
 
 const formSignin = style({
   width: '100%',
@@ -22,18 +20,19 @@ const formContainer = style({
   textAlign: 'center',
 });
 
-const Login: FC<LoginProps> = ({ history }: LoginProps) => {
+const Login: FC = () => {
   const { user, login } = useContext(UserContext);
-
-  // Redirect to admin if user is already loggedn in.
-  if (user) {
-    history.push('/admin');
-  }
 
   const [userCredential, setUserCredential] = useState({
     email: 'admin@workspace.com',
     password: 'password',
   });
+
+  // Redirect to admin if user is already loggedn in.
+  if (user) {
+    // history.push('/admin');
+    return <Redirect to="/admin" />;
+  }
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -41,7 +40,6 @@ const Login: FC<LoginProps> = ({ history }: LoginProps) => {
 
     try {
       await login(email, password);
-      history.push('/admin');
     } catch (err) {
       console.error('Error Login', err);
     }

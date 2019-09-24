@@ -49,9 +49,9 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
           <h3 className="masthead-brand">Workspace</h3>
           <nav className="nav nav-masthead justify-content-center">
             <div className="nav-link">{user.email}</div>
-            <a className="nav-link" onClick={logout} role="button">
+            <button className="btn btn-link nav-link" onClick={logout} onKeyPress={logout}>
               Logout
-            </a>
+            </button>
           </nav>
         </div>
       </header>

@@ -3,11 +3,13 @@ import { style } from 'typestyle';
 import { color, px } from 'csx';
 import clsx from 'clsx';
 
+import { database } from '../../repository';
 import { WORKSPACES } from '../../constants';
 import CalendarContext from '../Calendar/CalendarContext';
+import AdminContext from '../../views/Admin/AdminContext';
 
 interface CalendarCellProps {
-  employeeName: string;
+  employeeCode: string;
   dateKey: string;
   shift: string;
   workspace: string;
@@ -19,7 +21,7 @@ const strippedOff = style({
 });
 
 export const CalendarCell: React.FC<CalendarCellProps> = ({
-  employeeName,
+  employeeCode,
   dateKey,
   shift,
   workspace,
@@ -27,6 +29,7 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
 }: CalendarCellProps) => {
   const { defaultWorkspace } = useContext(CalendarContext);
   const { label, color: backColor, state, description } = WORKSPACES.find(w => w.key === workspace) || defaultWorkspace;
+  const { workspace: selectedWorkspace } = useContext(AdminContext);
 
   const tdStyle = style({
     padding: '0 !important', // todo: remove important
@@ -44,8 +47,18 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
 
   const textClass = clsx(spaceStyle, state === 0 && strippedOff);
 
+  const handleShiftClick = (): void => {
+    const { key: workspaceKey } = selectedWorkspace;
+    // only update if different
+    if (workspaceKey !== 'UNKNOWN' && workspaceKey !== workspace) {
+      database.ref(`schedules/${dateKey}/${employeeCode}/${shift}`).set(workspaceKey);
+    } else {
+      console.warn('Workspace is same.');
+    }
+  };
+
   return (
-    <td className={tdStyle} colSpan={colSpan}>
+    <td className={tdStyle} colSpan={colSpan} onClick={handleShiftClick}>
       <span className={textClass} title={description}>
         {label}
       </span>

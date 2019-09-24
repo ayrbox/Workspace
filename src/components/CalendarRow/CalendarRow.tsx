@@ -70,7 +70,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: C
         {flatSchedule.map(d => (
           <CalendarCell
             key={`${d.dayKey}-${d.shift}`}
-            employeeName={employeeName}
+            employeeCode={staffCode}
             dateKey={d.dayKey}
             shift={d.shift}
             workspace={d.workspace}

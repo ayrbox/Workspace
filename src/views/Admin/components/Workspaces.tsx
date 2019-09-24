@@ -36,7 +36,7 @@ const Workspaces = (): ReactElement => {
         const itemClass = style({
           ...workspaceListItemStyle,
           backgroundColor: bgColor.toHexString(),
-          border: `1px solid ${selected ? bgColor.darken('20%') : 'transparent'}`,
+          border: `5px solid ${selected ? bgColor.darken('20%') : 'transparent'}`,
         });
         return (
           <li key={key} className={itemClass} onClick={handleSelectWorkspace(workspace)}>

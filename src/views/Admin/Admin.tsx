@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { style } from 'typestyle';
 
 import { RouteComponentProps } from 'react-router';
@@ -6,7 +6,9 @@ import UserContext from '../../UserContext';
 import Calendar from '../../components/Calendar';
 import CalendarHeader from '../../components/CalendarHeader';
 import CalendarRow from '../../components/CalendarRow';
-import { SAMPLE_STAFF } from '../../constants';
+import Workspaces from './components/Workspaces';
+import { SAMPLE_STAFF, WorkspaceType, WORKSPACES } from '../../constants';
+import AdminViewContext from './AdminContext';
 
 type AdminViewProps = RouteComponentProps;
 
@@ -28,6 +30,7 @@ const mastheadInner = style({
 
 const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
   const { user, logout } = useContext(UserContext);
+  const [workspace, setWorkspace] = useState(WORKSPACES[0]);
 
   if (!user) {
     history.push('/login');
@@ -35,7 +38,12 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
   }
 
   return (
-    <div>
+    <AdminViewContext.Provider
+      value={{
+        workspace,
+        selectWorkspace: (w: WorkspaceType): void => setWorkspace(w),
+      }}
+    >
       <header className={`${masthead} mb-auto`}>
         <div className={mastheadInner}>
           <h3 className="masthead-brand">Workspace</h3>
@@ -48,6 +56,7 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
         </div>
       </header>
       <div className="container">
+        <Workspaces />
         <Calendar month={8} year={2019}>
           <CalendarHeader />
           <tbody>
@@ -57,7 +66,7 @@ const AdminView: FC<AdminViewProps> = ({ history }: AdminViewProps) => {
           </tbody>
         </Calendar>
       </div>
-    </div>
+    </AdminViewContext.Provider>
   );
 };
 

@@ -56,7 +56,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: C
           setSchedule(defaultSchedule);
         }
       });
-  }, [staffCode, days]);
+  }, [staffCode, days, shifts]);
 
   let flatSchedule = flattenToArray(schedule);
   if (merge) {

@@ -36,12 +36,7 @@ const Login: FC = () => {
   const handleLogin = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const { email, password } = userCredential;
-
-    try {
-      await login(email, password);
-    } catch (err) {
-      console.error('Error Login', err);
-    }
+    await login(email, password);
   };
 
   const handleChange = (e: FormEvent<HTMLInputElement>): void => {
@@ -57,7 +52,7 @@ const Login: FC = () => {
     <div className={formContainer}>
       <form className={formSignin} onSubmit={handleLogin}>
         <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-        <label htmlFor="inputEmail" className="sr-only">
+        <label htmlFor="email" className="sr-only">
           Email
         </label>
         <input
@@ -67,18 +62,20 @@ const Login: FC = () => {
           value={userCredential.email}
           onChange={handleChange}
           className="form-control"
-        />
-        <label htmlFor="inputPassword" className="sr-only">
+          id="email"
+          />
+        <label htmlFor="password" className="sr-only">
           Password
         </label>
         <input
           type="password"
           name="password"
+          id="password"
           placeholder="Password"
           value={userCredential.password}
           onChange={handleChange}
           className="form-control"
-        />
+          />
         <button type="submit" className="btn btn-outline-primary">
           Login
         </button>

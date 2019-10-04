@@ -39,8 +39,7 @@ const AdminView: FC = () => {
       value={{
         workspace,
         selectWorkspace: (w: WorkspaceType): void => setWorkspace(w),
-      }}
-    >
+      }}>
       <header className={`${masthead} mb-auto`}>
         <div className={mastheadInner}>
           <h3 className="masthead-brand">Workspace</h3>
@@ -57,9 +56,9 @@ const AdminView: FC = () => {
         <Calendar month={8} year={2019}>
           <CalendarHeader />
           <tbody>
-            {SAMPLE_STAFF.map(({ code, name }) => (
+            {SAMPLE_STAFF.map(({ code, name }) => 
               <CalendarRow key={code} staffCode={code} employeeName={name} merge={false} />
-            ))}
+            )}
           </tbody>
         </Calendar>
       </div>

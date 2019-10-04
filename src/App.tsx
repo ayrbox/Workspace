@@ -9,11 +9,7 @@ import Admin from './views/Admin';
 import UserContext from './UserContext';
 
 const handleLogin = async (email: string, password: string): Promise<void> => {
-  try {
-    await auth().signInWithEmailAndPassword(email, password);
-  } catch (err) {
-    throw err;
-  }
+  await auth().signInWithEmailAndPassword(email, password);
 };
 
 const handleLogout = async (): Promise<void> => {
@@ -33,8 +29,7 @@ const App: React.FC = () => {
         login: handleLogin,
         logout: handleLogout,
         user: currentUser,
-      }}
-    >
+      }}>
       <Router>
         <>
           <Route exact path="/login" component={Login} />

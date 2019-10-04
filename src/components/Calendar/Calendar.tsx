@@ -49,33 +49,32 @@ export const Calendar: FC<CalendarProps> = ({ children, year, month }: CalendarP
   const [currentMonth, setMonth] = useState(month);
 
   const handleNavigation = (direction: NavigationDirection): void => {
-    let year_ = currentYear;
-    let month_ = currentMonth + direction;
+    let newYear = currentYear;
+    let newMonth = currentMonth + direction;
 
-    if (month_ < 0) {
-      year_ = currentYear - 1;
-      month_ = 11;
+    if (newMonth < 0) {
+      newYear = currentYear - 1;
+      newMonth = 11;
     }
 
-    if (month_ > 11) {
-      year_ = currentYear + 1;
-      month_ = 0;
+    if (newMonth > 11) {
+      newYear = currentYear + 1;
+      newMonth = 0;
     }
 
-    setMonth(month_);
-    setYear(year_);
+    setMonth(newMonth);
+    setYear(newYear);
   };
 
   const days = getMonthDays(currentYear, currentMonth);
   return (
     <CalendarContext.Provider
       value={{
-        days: days,
+        days,
         shifts: SHIFTS,
         defaultWorkspace: defaultWorkspace || UNKNOWN_WORKSPACE,
         onNavigate: handleNavigation,
-      }}
-    >
+      }}>
       <div className={calendarClassName}>
         <div className={scrollFixer}>
           <Header monthIndex={currentMonth} year={currentYear} />

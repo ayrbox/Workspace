@@ -17,7 +17,7 @@ interface CalendarCellProps {
 }
 
 const strippedOff = style({
-  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f9f9fa' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
+  backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23f9f9fa\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 40L40 0H20L0 20M40 40V20L20 40\'/%3E%3C/g%3E%3C/svg%3E")',
 });
 
 export const CalendarCell: React.FC<CalendarCellProps> = ({
@@ -52,13 +52,15 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
     // only update if different
     if (workspaceKey !== 'UNKNOWN' && workspaceKey !== workspace) {
       database.ref(`schedules/${dateKey}/${employeeCode}/${shift}`).set(workspaceKey);
-    } else {
-      console.warn('Workspace is same.');
-    }
+    } 
   };
 
   return (
-    <td className={tdStyle} colSpan={colSpan} onClick={handleShiftClick}>
+    <td
+      role="gridcell"
+      className={tdStyle}
+      colSpan={colSpan}
+      onClick={handleShiftClick}>
       <span className={textClass} title={description}>
         {label}
       </span>

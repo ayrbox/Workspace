@@ -48,11 +48,11 @@ const CalendarHeader: FC<CalendarHeaderProps> = ({ label }: CalendarHeaderProps)
         <td className={nameHeaderCell}>Shift</td>
         {days.map(day => {
           const key = dateKey(day);
-          return shifts.map(shift => (
+          return shifts.map(shift => 
             <td key={`${key}-${shift.key}`} className={shiftHeaderCell}>
               {shift.label}
             </td>
-          ));
+          );
         })}
       </tr>
     </thead>

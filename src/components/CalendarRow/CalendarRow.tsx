@@ -26,20 +26,20 @@ const nameCell = style({
 const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: CalendarRowProps) => {
   const { days, shifts } = useContext(CalendarContext);
 
-  const blank_ = blankSchedule(days, shifts);
-  const [schedule, setSchedule] = useState(blank_);
+  const emptySchedule = blankSchedule(days, shifts);
+  const [schedule, setSchedule] = useState(emptySchedule);
 
   useEffect(() => {
-    const start_ = dateKey(days[0]);
-    const end_ = dateKey(days[days.length - 1]);
+    const calStartDate = dateKey(days[0]);
+    const calEndDate = dateKey(days[days.length - 1]);
 
     const defaultSchedule = blankSchedule(days, shifts);
 
     database
       .ref('schedules')
       .orderByKey()
-      .startAt(start_)
-      .endAt(end_)
+      .startAt(calStartDate)
+      .endAt(calEndDate)
       .on('value', snapshot => {
         const s = snapshot.val() as fullScheduleType;
         if (s) {
@@ -67,7 +67,7 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: C
     <>
       <tr>
         <td className={nameCell}>{employeeName}</td>
-        {flatSchedule.map(d => (
+        {flatSchedule.map(d => 
           <CalendarCell
             key={`${d.dayKey}-${d.shift}`}
             employeeCode={staffCode}
@@ -75,8 +75,8 @@ const CalendarRow: FC<CalendarRowProps> = ({ staffCode, employeeName, merge }: C
             shift={d.shift}
             workspace={d.workspace}
             colSpan={d.span}
-          />
-        ))}
+            />
+        )}
       </tr>
     </>
   );

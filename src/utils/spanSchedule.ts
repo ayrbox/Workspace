@@ -15,38 +15,34 @@ const isWeekend = (day: Date): boolean => {
   return d === 6 || d === 0;
 };
 
-export const generateRandomSchedule = (days: Date[], shifts: ShiftType[]): scheduleType => {
-  return days.reduce((schedule: scheduleType, day): scheduleType => {
+export const generateRandomSchedule = (days: Date[], shifts: ShiftType[]): scheduleType => days.reduce((schedule: scheduleType, day): scheduleType => {
     const dKey = dateKey(day);
     return {
       ...schedule,
-      [dKey]: shifts.reduce((shifts: shiftScheduleType, shift): shiftScheduleType => {
+      [dKey]: shifts.reduce((randomShifts: shiftScheduleType, shift): shiftScheduleType => {
         const rndSpace = Math.floor(Math.random() * Math.floor(2));
         const { key } = WORKSPACES[rndSpace];
         return {
-          ...shifts,
+          ...randomShifts,
           [shift.key]: isWeekend(day) ? 'NONWORKINGDAY' : key,
         };
       }, {}),
     };
   }, {});
-};
 
-export const blankSchedule = (days: Date[], shifts: ShiftType[]): scheduleType => {
-  return days.reduce((schedule: scheduleType, day): scheduleType => {
+export const blankSchedule = (days: Date[], shifts: ShiftType[]): scheduleType => days.reduce((schedule: scheduleType, day): scheduleType => {
     const dKey = dateKey(day);
     return {
       ...schedule,
-      [dKey]: shifts.reduce((shifts: shiftScheduleType, shift): shiftScheduleType => {
+      [dKey]: shifts.reduce((blankShifts: shiftScheduleType, shift): shiftScheduleType => {
         const { key } = WORKSPACES[1];
         return {
-          ...shifts,
+          ...blankShifts,
           [shift.key]: isWeekend(day) ? 'NONWORKINGDAY' : key,
         };
       }, {}),
     };
   }, {});
-};
 
 export const flattenToArray = (schedule: scheduleType): spanScheduleType[] => {
   // flatten the structure
@@ -55,14 +51,12 @@ export const flattenToArray = (schedule: scheduleType): spanScheduleType[] => {
     shifts: value,
   }));
 
-  const flattenScheduleShifts = flattenScheduleDays.map(({ dayKey, shifts }) => {
-    return Object.entries(shifts).map(([key, value]) => ({
-      dayKey: dayKey,
+  const flattenScheduleShifts = flattenScheduleDays.map(({ dayKey, shifts }) => Object.entries(shifts).map(([key, value]) => ({
+      dayKey,
       shift: key,
       workspace: value,
       span: 1,
-    }));
-  });
+    })));
 
   const flatSchedule = flatten(flattenScheduleShifts);
 
@@ -81,7 +75,7 @@ export function spanSchedule(flatScheule: spanScheduleType[]): spanScheduleType[
 
   const spannedSchedule: spanScheduleType[] = [];
 
-  for (let i = 0; i < flatScheule.length; i++) {
+  for (let i = 0; i < flatScheule.length; i += 1) {
     if (flatScheule[i].workspace !== current.workspace) {
       if (cnt > 0) {
         // document.write(current + ' comes --> ' + cnt + ' times<br>');
@@ -94,7 +88,7 @@ export function spanSchedule(flatScheule: spanScheduleType[]): spanScheduleType[
       current = flatScheule[i];
       cnt = 1;
     } else {
-      cnt++;
+      cnt += 1;
     }
   }
   if (cnt > 0) {

@@ -11,7 +11,7 @@
     "@types/react-dom": "16.9.0",
     "clsx": "^1.0.4",
     "csx": "^10.0.0",
-    "firebase": "^6.6.1",
+    "firebase": "^10.9.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.9.0",
